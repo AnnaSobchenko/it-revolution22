@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getIsLoggedIn, getUserEmail, getUserName } from "../../../redux/auth/authSelector";
 import { logout } from "../../../redux/auth/authOperations";
 
+const Logo=require("../../../images/logo.png")
+
 const AppBar = () => {
   const userInfo = useSelector(getUserName);
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -39,6 +41,7 @@ const AppBar = () => {
       <header className={s.header}>
         <div className={s.logo}>
           <NavLink to="/">
+            <img src={Logo} alt="logo" />
             {/* <svg className={s.navIcon} width="129px" height="28px">
               <use xlinkHref={`${Icons}#icon-logo`} />
             </svg> */}
