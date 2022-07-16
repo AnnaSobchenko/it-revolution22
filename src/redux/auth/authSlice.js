@@ -21,7 +21,7 @@ const authSlice = createSlice({
     reducers: {
       logoutUser(state) {
         state.user = { email: null };
-        state.accessToken = null;
+        state.token = null;
         state.refreshToken = null;
         state._id = null;
         state.isLoggedIn = false;
@@ -37,7 +37,7 @@ const authSlice = createSlice({
       },
       [signup.fulfilled](state, { payload }) {
         state.user.email = payload.email;
-        state.accessToken = payload.token;
+        state.token = payload.token;
         state.refreshToken = payload.refreshToken;
         state._id = payload._id;
         state.isLoggedIn = true;
@@ -55,8 +55,9 @@ const authSlice = createSlice({
         state.error = null;
       },
       [signin.fulfilled](state, { payload }) {
-        state.user.email = payload.email;
-        state.accessToken = payload.token;
+        state.user.email = payload.user.email;
+        state.user.name = payload.user.name;
+        state.token = payload.token;
         state.refreshToken = payload.refreshToken;
         state._id = payload._id;
         state.isLoggedIn = true;
@@ -75,7 +76,7 @@ const authSlice = createSlice({
       },
       [getInfo.fulfilled](state, { payload }) {
         state.user.email = payload.email;
-        state.accessToken = payload.token;
+        state.token = payload.token;
         state.refreshToken = payload.refreshToken;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -94,7 +95,7 @@ const authSlice = createSlice({
       [getNewTokens.fulfilled](state, { payload }) {
         state.isLoggedIn = true;
         state.isLoading = false;
-        state.accessToken = payload.token;
+        state.token = payload.token;
         state.refreshToken = payload.refreshToken;
       },
       [getNewTokens.rejected](state, { payload }) {
@@ -110,7 +111,7 @@ const authSlice = createSlice({
       },
       [logout.fulfilled](state) {
         state.user = { email: null };
-        state.accessToken = null;
+        state.token = null;
         state.refreshToken = null;
         state._id = null;
         state.isLoggedIn = false;

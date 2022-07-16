@@ -7,11 +7,11 @@ import MediaQuery from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
 // import Modal from "../Modal/Modal";
 // import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { getIsLoggedIn, getUserEmail } from "../../../redux/auth/authSelector";
+import { getIsLoggedIn, getUserEmail, getUserName } from "../../../redux/auth/authSelector";
 import { logout } from "../../../redux/auth/authOperations";
 
 const AppBar = () => {
-  const userInfo = useSelector(getUserEmail);
+  const userInfo = useSelector(getUserName);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
 
@@ -45,6 +45,7 @@ const AppBar = () => {
           </NavLink>
         </div>
         <div className={s.header_navLink}>
+
           {isLoggedIn && (
             <NavLink
               to="/"
@@ -53,13 +54,29 @@ const AppBar = () => {
               Home
             </NavLink>
           )}
+          {!isLoggedIn && (
+            <NavLink
+              to="/login"
+              className={({ isActive }) => (isActive ? s.activeStyle : s.link)}
+            >
+              Login
+            </NavLink>
+          )}
+          {!isLoggedIn && (
+            <NavLink
+              to="/register"
+              className={({ isActive }) => (isActive ? s.activeStyle : s.link)}
+            >
+              Register
+            </NavLink>
+          )}
          
-          <NavLink
+         {isLoggedIn && <NavLink
             to="/contacts"
             className={({ isActive }) => (isActive ? s.activeStyle : s.link)}
           >
             Contacts
-          </NavLink>
+          </NavLink>}
         </div>
         <>
           {isLoggedIn && (

@@ -1,18 +1,18 @@
 import { Formik } from "formik";
-// import { useDispatch } from "react-redux";
-// import { signin, signup } from "../../redux/auth/authOperations";
+import { useDispatch } from "react-redux";
+import { signin, signup } from "../../redux/auth/authOperations";
 import { authValidationSchema } from "../../utils/validation/AuthValid";
 import LabelForm from "../_shared/LabelForm/LabelForm";
 import s from "./AuthForm.module.scss";
 // import Button from "../Button/Button";
 
-const AuthForm = (isAuth) => {
-  // const dispatch = useDispatch();
+const AuthForm = ({ isAuth }) => {
+  const dispatch = useDispatch();
 
   return (
     <div>
       <Formik
-        initialValues={{ email: "", password: "", name: "" }}
+        initialValues={{ email: "", password: "" }}
         validationSchema={authValidationSchema}
       >
         {({
@@ -26,15 +26,17 @@ const AuthForm = (isAuth) => {
         }) => (
           <div className={s.authForm}>
             <h2 className={s.authFormTitle2}>
-              Or login to our app using e-mail and password:
+              {isAuth ? "Register:" : "Login:"}
             </h2>
             <form onSubmit={handleSubmit} className={s.authFormInput}>
-            {isAuth &&  <LabelForm
-               type="name"
-               handleChange={handleChange}
-               handleBlur={handleBlur}
-               values={values}
-             />}
+              {isAuth && (
+                <LabelForm
+                  type="name"
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  values={values}
+                />
+              )}
               <LabelForm
                 type="email"
                 handleChange={handleChange}
@@ -50,7 +52,13 @@ const AuthForm = (isAuth) => {
 
               <div className={s.btn}>
                 {/* <button>sign in</button> */}
-                <button>submit</button>
+                <button
+                  onClick={() =>
+                    dispatch(!isAuth ? signin(values) : signup(values))
+                  }
+                >
+                  submit
+                </button>
                 {/* <Button
                   cta="sign in"
                   signButton

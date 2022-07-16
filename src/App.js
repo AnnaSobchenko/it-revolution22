@@ -8,9 +8,10 @@ import Loader from "./components/_shared/Loader/Loader";
 import AppBar from "./components/_navigations/AppBar/AppBar";
 import PrivateRoute from "./components/_routs/PrivatRoute";
 import PublicRoute from "./components/_routs/PublicRoute";
-import AuthPage from "./pages/AuthPage/AuthPage";
 import { getIsLoggedIn } from "./redux/auth/authSelector";
 import MainPage from "./pages/MainPage/MainPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 // import AuthForm from "./components/AuthForm/AuthForm";
 function App() {
 
@@ -26,11 +27,12 @@ function App() {
               {/* <Route path="/" element={<AuthForm />}> */}
                 <Route
                 index
-                element={isLoggedIn ? <MainPage /> : <Navigate to="auth" />}
+                element={isLoggedIn ? <MainPage /> : <Navigate to="login" />}
               />
               {/* <Route path="contacts" element={<ContactsPage />} /> */}
               <Route element={<PublicRoute />}>
-                <Route path="auth" element={<AuthPage />} />
+                <Route path="login" element={<LoginPage />} />
+                <Route path="register" element={<RegisterPage />} />
               </Route>
               {/* <Route element={<PrivateRoute />}>
                 <Route path="test/:type" element={<TestPage />} />

@@ -12,7 +12,6 @@ const token = {
 
 export async function signinUserApi(userData) {
   const { data } = await axios.post("/api/users/login", userData);
-
   token.set(data.ResponseBody.token);
   return data.ResponseBody;
 }
