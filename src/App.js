@@ -13,7 +13,8 @@ function App() {
       <div>
         <Suspense fallback={<Loader />}>
             <Routes>
-              <Route path="/" element={<AuthForm />}>
+            <Route path="/" element={<AppBar />}>
+              {/* <Route path="/" element={<AuthForm />}> */}
                 {/* <Route
                 index
                 element={isLoggedIn ? <MainPage /> : <Navigate to="auth" />}
