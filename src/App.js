@@ -12,7 +12,6 @@ function App() {
     <div className="content">
       <div>
         <Suspense fallback={<Loader />}>
-          <Router>
             <Routes>
               <Route path="/" element={<AuthForm />}>
                 {/* <Route
@@ -32,7 +31,6 @@ function App() {
               <Route path="*" element={<RedirectNew to="/" replace />} /> */}
               </Route>
             </Routes>
-          </Router>
         </Suspense>
       </div>
     </div>

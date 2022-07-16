@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { signin, signup } from "../../redux/auth/authOperations";
 import { authValidationSchema } from "../../utils/validation/AuthValid";
 import LabelForm from "../_shared/LabelForm/LabelForm";
@@ -7,7 +7,7 @@ import s from "./AuthForm.module.scss";
 // import Button from "../Button/Button";
 
 const AuthForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <div>
