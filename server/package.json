@@ -1,7 +1,11 @@
 {
-  "name": "template",
+  "name": "it-revolution22-rest-api",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./src/server.js",
     "dev": "cross-env NODE_ENV=development nodemon ./src/server.js"
