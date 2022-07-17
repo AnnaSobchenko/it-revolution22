@@ -29,7 +29,7 @@ export default function AddForm() {
   return (
     <form onSubmit={handleSubmit} className={s.form}>
       <div className={s.label_wrapper}>
-        <lable className={s.label}>
+        <label className={s.label}>
           Name
           <input
             autoComplete="off"
@@ -39,7 +39,7 @@ export default function AddForm() {
             value={name}
             onChange={handleChange}
           />
-        </lable>
+        </label>
         <label className={s.label}>
           Number
           <input
