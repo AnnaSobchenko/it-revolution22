@@ -75,6 +75,8 @@ const authSlice = createSlice({
         state.error = null;
       },
       [getInfo.fulfilled](state, { payload }) {
+      console.log('~ payload', payload)
+        
         state.user.email = payload.email;
         state.token = payload.token;
         state.refreshToken = payload.refreshToken;
