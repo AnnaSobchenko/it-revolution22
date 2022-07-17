@@ -39,6 +39,8 @@ const UsersPage = () => {
     openModal(userInfo);
   };
 
+  
+
   return (
     <section className={`container ${s.main}`}>
       <ul className={s.list}>
@@ -50,7 +52,7 @@ const UsersPage = () => {
           >
             <p className={s.text__name}>{user.name}</p>
             <p className={s.text__email}>{user.email}</p>
-            <button className={s.btn}>delete</button>
+            
           </li>
         ))}
       </ul>

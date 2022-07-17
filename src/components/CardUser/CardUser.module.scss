@@ -29,10 +29,21 @@
     padding: 10px;
   }
 
-  &__email{
+  &__email {
     margin: 0;
     padding: 10px;
     font-size: 1.5rem;
     line-height: 1;
+  }
+
+  .btn {
+    font-size: .9rem;
+    margin-top: 30px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: var( --btn-bg-color);
+    &:hover {
+      color: var(--check-color);
+    }
   }
 }

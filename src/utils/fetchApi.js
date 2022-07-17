@@ -61,3 +61,7 @@ export async function getAllUsersApi() {
   const { data } = await axios.get("/api/users");
   return data;
 }
+export async function delUserByIdApi({id}) {
+  await axios.delete("/api/users/userId",id);
+  return 
+}

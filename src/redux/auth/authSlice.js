@@ -11,7 +11,7 @@ const authSlice = createSlice({
     name: "auth",
     initialState: {
       user: { email: "", name:"" },
-      token: null,
+      token:  null,
       refreshToken: null,
       _id: null,
       isLoading: false,
