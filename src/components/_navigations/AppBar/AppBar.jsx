@@ -1,7 +1,7 @@
 
 import { React, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-// import Icons from "../../images/symbol-defs.svg";
+import Icons from "../../../images/symbol-defs.svg";
 import s from "./AppBar.module.scss";
 import MediaQuery from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { getIsLoggedIn, getUserEmail, getUserName } from "../../../redux/auth/authSelector";
 import { logout } from "../../../redux/auth/authOperations";
+import { getAllUsers } from "../../../redux/user/userOperations";
 
 const Logo=require("../../../images/logo.png")
 
@@ -54,7 +55,7 @@ const AppBar = () => {
               to="/"
               className={({ isActive }) => (isActive ? s.activeStyle : s.link)}
             >
-              Home
+              Phonebook
             </NavLink>
           )}
           {!isLoggedIn && (
@@ -77,8 +78,9 @@ const AppBar = () => {
          {isLoggedIn && <NavLink
             to="/contacts"
             className={({ isActive }) => (isActive ? s.activeStyle : s.link)}
+            // onClick={()=>dispatch(getAllUsers)}
           >
-            Contacts
+            Users
           </NavLink>}
         </div>
         <>
@@ -120,15 +122,15 @@ const AppBar = () => {
           <MediaQuery minWidth={768}>
             {isLoggedIn && (
               <NavLink
-                to="auth"
+                to="/login"
                 onClick={() => {
                   dispatch(logout());
                 }}
               >
                 <div className={s.navIconMenu_wrapper}>
-                  {/* <svg className={s.navIcon_signOut} width="16px" height="16px">
+                  <svg className={s.navIcon_signOut} width="16px" height="16px">
                     <use xlinkHref={`${Icons}#icon-sign-out`} />
-                  </svg> */}
+                  </svg>
                 </div>
               </NavLink>
             )}

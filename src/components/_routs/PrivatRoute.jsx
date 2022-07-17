@@ -8,7 +8,7 @@ const PrivateRoute = () => {
 	const location = useLocation();
 
 	if (!isLogin) {
-		return <Navigate to="/auth" state={{ from: location }} />;
+		return <Navigate to="/login" state={{ from: location }} />;
 	}
 	return <Outlet />;
 };

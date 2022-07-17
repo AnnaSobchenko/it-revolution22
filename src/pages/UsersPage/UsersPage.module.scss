@@ -1,0 +1,29 @@
+
+.list{
+  display: grid;
+  gap:25px;
+  grid-template-columns: repeat(3,1fr);
+  padding:  20px 0;
+  li{
+border: 1px solid var(--check-color);
+border-radius: 5px;
+padding: 10px;
+&:hover{
+  cursor: pointer;
+  box-shadow: 6px -5px var(--check-color);
+}
+
+.text{
+  &__name{
+    font-size: 18px;
+  }
+}
+  }
+  
+.btn{
+  &:hover{
+
+    color: var(--check-color);
+  }
+}
+}

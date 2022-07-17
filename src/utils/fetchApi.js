@@ -50,3 +50,9 @@ export async function refreshUserTokenApi({ persistedToken }) {
 
   return data;
 }
+export async function getAllUsersApi() {
+  const { data } = await axios.get("/api/users");
+  console.log('~ dataFetch', data)
+
+  return data;
+}

@@ -46,7 +46,7 @@ export const getInfo = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
   const state = thunkApi.getState();
-  const persistedToken = state.auth.accessToken;
+  const persistedToken = state.auth.token;
   try {
     return await logoutUserApi(persistedToken);
   } catch (error) {
@@ -58,7 +58,7 @@ export const getNewTokens = createAsyncThunk(
   "auth/refresh",
   async (_, thunkApi) => {
     const state = thunkApi.getState();
-    const persistedToken = state.auth.accessToken;
+    const persistedToken = state.auth.token;
     if (!persistedToken) thunkApi.rejectWithValue();
 
     try {
