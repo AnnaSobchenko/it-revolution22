@@ -52,7 +52,22 @@ export async function refreshUserTokenApi({ persistedToken }) {
 }
 export async function getAllUsersApi() {
   const { data } = await axios.get("/api/users");
-  console.log('~ dataFetch', data)
+
+  return data;
+}
+export async function addContactApi(form) {
+  const { data } = await axios.post("/api/users/contacts/add", form);
+
+  return data.contacts;
+}
+export async function getContactApi(form) {
+  console.log("form :>> ", form);
+  const data = await axios.get("/api/users/contacts", form);
+  console.log("data :>> ", data);
+  return data;
+}
+export async function delContactApi(form) {
+  const { data } = await axios.get("/api/users/contacts/:contactId", form);
 
   return data;
 }

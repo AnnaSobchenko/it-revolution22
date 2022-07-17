@@ -1,5 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getAllUsersApi } from "../../utils/fetchApi";
+import {
+  addContactApi,
+  delContactApi,
+  getAllUsersApi,
+  getContactApi,
+} from "../../utils/fetchApi";
 
 export const getAllUsers = createAsyncThunk("users", async (_, thunkApi) => {
   try {
@@ -10,6 +15,42 @@ export const getAllUsers = createAsyncThunk("users", async (_, thunkApi) => {
     return thunkApi.rejectWithValue(error.message);
   }
 });
+export const addUserContact = createAsyncThunk(
+  "add/contact",
+  async (form, thunkApi) => {
+    try {
+      const data = await addContactApi(form);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+export const getUserContact = createAsyncThunk(
+  "get/contacts",
+  async (form, thunkApi) => {
+    try {
+      const data = await getContactApi(form);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+export const delUserContact = createAsyncThunk(
+  "del/contact",
+  async (form, thunkApi) => {
+    try {
+      const data = await delContactApi(form);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
 
 // export const signin = createAsyncThunk(
 //   "auth/signin",

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserEmail } from "../../redux/auth/authSelector";
+import { addUserContact } from "../../redux/user/userOperations";
 import s from "./AddForm.module.scss";
 export default function AddForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const dispatch = useDispatch();
+  const userEmail = useSelector(getUserEmail);
+
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
 
@@ -18,6 +22,10 @@ export default function AddForm() {
       default:
         return;
     }
+  };
+
+  const addContact = () => {
+    dispatch(addUserContact({ name, number, email: userEmail }));
   };
 
   const handleSubmit = (event) => {
@@ -52,7 +60,7 @@ export default function AddForm() {
           />
         </label>
       </div>
-      <button type="submit" className={s.btn}>
+      <button type="submit" className={s.btn} onClick={addContact}>
         Add contact
       </button>
     </form>
