@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import CardUser from "../../components/CardUser/CardUser";
 import Modal from "../../components/Modal/Modal";
-import { getInfo } from "../../redux/auth/authOperations";
 import { getAllUsers } from "../../redux/user/userOperations";
 import { getUsers } from "../../redux/user/userSelector";
-// import Icons from "../../images/symbol-defs.svg";
 import s from "./UsersPage.module.scss";
 
 const UsersPage = () => {
-  const dispatch = useDispatch();
 
-  //   const getQuestions = (e) => {
-  //     const btnValue = e.target.innerText;
-  //     dispatch(testingType(btnValue));
-  //     dispatch(questions(btnValue));
-  //   };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -41,11 +34,9 @@ const UsersPage = () => {
     });
   };
   const handleOpenModal = (e) => {
-    const value = e.currentTarget.value;
-    const user = dispatch(getInfo(value));
-    console.log("~ user", user);
-
-    // openModal(user);
+    const email = e.currentTarget.id;
+    const userInfo=users.find((el)=>el.email===email)
+    openModal(userInfo);
   };
 
   return (
@@ -54,7 +45,7 @@ const UsersPage = () => {
         {users.map((user) => (
           <li
             key={user._id}
-            value={user.email}
+            id={user.email}
             onClick={(e) => handleOpenModal(e)}
           >
             <p className={s.text__name}>{user.name}</p>
@@ -65,7 +56,7 @@ const UsersPage = () => {
       </ul>
       {modal.open && (
         <Modal handleClose={closeModal} checker={true}>
-          {/* {modal.content} */}
+          <CardUser contact={modal.content} />
         </Modal>
       )}
     </section>

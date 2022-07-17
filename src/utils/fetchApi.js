@@ -43,6 +43,13 @@ export async function getUserInfo(accessToken) {
   const userInfo = await axios.get("api/users/current");
   return { email: userInfo.email };
 }
+// export async function getOneUserInfoApi(email) {
+//   console.log('email', email)
+//   const userInfo = await axios.get("api/users/info", {email});
+//   console.log('userInfo', userInfo)
+//   return userInfo;
+// }
+
 
 export async function refreshUserTokenApi({ persistedToken }) {
   token.set(persistedToken);
@@ -52,7 +59,5 @@ export async function refreshUserTokenApi({ persistedToken }) {
 }
 export async function getAllUsersApi() {
   const { data } = await axios.get("/api/users");
-  console.log('~ dataFetch', data)
-
   return data;
 }

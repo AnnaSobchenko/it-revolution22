@@ -53,6 +53,7 @@ const AuthForm = ({ isAuth }) => {
               <div className={s.btn}>
                 {/* <button>sign in</button> */}
                 <button
+                type="button"
                   onClick={() =>
                     dispatch(!isAuth ? signin(values) : signup(values))
                   }

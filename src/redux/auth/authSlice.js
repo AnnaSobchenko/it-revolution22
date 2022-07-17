@@ -87,7 +87,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = false;
         state.error = payload;
-      },
+      },     
   
       // REFRESH
       [getNewTokens.pending](state) {
