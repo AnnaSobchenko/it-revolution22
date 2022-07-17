@@ -12,6 +12,8 @@ import { getIsLoggedIn } from "./redux/auth/authSelector";
 import MainPage from "./pages/MainPage/MainPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import ContactPage from "./pages/ContactPage/ContactsPage";
+import ContactsPage from "./pages/ContactPage/ContactsPage";
 // import AuthForm from "./components/AuthForm/AuthForm";
 function App() {
 
@@ -29,7 +31,7 @@ function App() {
                 index
                 element={isLoggedIn ? <MainPage /> : <Navigate to="login" />}
               />
-              {/* <Route path="contacts" element={<ContactsPage />} /> */}
+              <Route path="contacts" element={<ContactsPage />} />
               <Route element={<PublicRoute />}>
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />

@@ -1,7 +1,7 @@
 
 import { React, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-// import Icons from "../../images/symbol-defs.svg";
+import Icons from "../../../images/symbol-defs.svg";
 import s from "./AppBar.module.scss";
 import MediaQuery from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
@@ -126,9 +126,9 @@ const AppBar = () => {
                 }}
               >
                 <div className={s.navIconMenu_wrapper}>
-                  {/* <svg className={s.navIcon_signOut} width="16px" height="16px">
+                  <svg className={s.navIcon_signOut} width="16px" height="16px">
                     <use xlinkHref={`${Icons}#icon-sign-out`} />
-                  </svg> */}
+                  </svg>
                 </div>
               </NavLink>
             )}

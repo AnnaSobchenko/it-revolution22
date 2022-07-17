@@ -112,8 +112,8 @@
       width: 45px;
       display: inline-block;
       white-space: nowrap;
-      animation: text 8s infinite linear;
-      padding-left: 100%;
+      animation: text 6s infinite linear;
+      padding-left: 90%;
       text-overflow: ellipsis;
       margin-left: 10px;
     }
@@ -128,7 +128,6 @@
     width: 51px;
     height: 67px;
     background-color: var(--primary-bg-color);
-    border-left: 1px solid var(--border-color);
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
@@ -153,10 +152,11 @@
   
   .navIcon_signOut {
     display: flex;
+    fill:#ffffff;
   }
   
   .text_transform {
-    width: 43px;
+    width: 100px;
     text-align: center;
     overflow: hidden;
     @media screen and (min-width: 768px) {
@@ -173,6 +173,6 @@
     }
   
     100% {
-      transform: translate(-250%, 0);
+      transform: translate(-150%, 0);
     }
   }
