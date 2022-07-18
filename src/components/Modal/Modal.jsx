@@ -23,7 +23,7 @@ const Modal = ({ handleClose, children, checker }) => {
 
   return createPortal(
     <div onClick={close} className={styles.overlay}>
-      <div className={ (!checker) ? styles.content : styles.contentChange}>
+      <div className={!checker ? styles.content : styles.contentChange}>
         {children}
       </div>
     </div>,

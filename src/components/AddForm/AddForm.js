@@ -17,14 +17,12 @@ import { ToastContainer } from "react-toastify";
 
 export default function AddForm() {
   const phoneForm = useSelector(getUserPhoneForm);
-
   const [name, setName] = useState("");
-
   const [number, setNumber] = useState("");
-
-  const dispatch = useDispatch();
   const userEmail = useSelector(getUserEmail);
   const userContact = useSelector(getUserContacts);
+
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
@@ -40,20 +38,6 @@ export default function AddForm() {
         return;
     }
   };
-
-  // const addContact = async () => {
-  //   // phoneForm.id
-  //   //   ? dispatch(
-  //   //       updateUserContact({
-  //   //         name,
-  //   //         number,
-  //   //         email: userEmail,
-  //   //         id: phoneForm.id,
-  //   //       })
-  //   //     )
-  //   //   : dispatch(addUserContact({ name, number, email: userEmail }));
-  //   // await dispatch(onPhoneFormReset({}));
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -96,7 +80,6 @@ export default function AddForm() {
             type="text"
             name="name"
             className={s.input}
-            // value={name ? name : phoneForm.name}
             value={name}
             onChange={handleChange}
           />
@@ -108,7 +91,6 @@ export default function AddForm() {
             type="text"
             name="number"
             className={s.input}
-            // value={number ? number : phoneForm.number}
             value={number}
             onChange={handleChange}
           />
@@ -128,7 +110,6 @@ export default function AddForm() {
         draggable
         pauseOnHover
       />
-
       <ToastContainer />
     </form>
   );

@@ -1,6 +1,5 @@
 import axios from "axios";
 axios.defaults.baseURL = "https://it-revolution22-rest-api.herokuapp.com/";
-// axios.defaults.baseURL = "http://localhost:3001/";
 
 const token = {
   set(token) {
@@ -44,13 +43,6 @@ export async function getUserInfo(accessToken) {
   const userInfo = await axios.get("api/users/current");
   return { email: userInfo.email };
 }
-// export async function getOneUserInfoApi(email) {
-//   console.log('email', email)
-//   const userInfo = await axios.get("api/users/info", {email});
-//   console.log('userInfo', userInfo)
-//   return userInfo;
-// }
-
 
 export async function refreshUserTokenApi({ persistedToken }) {
   token.set(persistedToken);
@@ -83,7 +75,7 @@ export async function delContactApi(form) {
   return data;
 }
 export async function delUserByIdApi(id) {
-  console.log('{id}', id)
-  await axios.delete(`/api/users/${id}`,id);
-  return 
+  console.log("{id}", id);
+  await axios.delete(`/api/users/${id}`, id);
+  return;
 }

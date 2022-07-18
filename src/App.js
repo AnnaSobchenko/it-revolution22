@@ -13,28 +13,14 @@ import Loader from "./components/_shared/Loader/Loader";
 import AppBar from "./components/_navigations/AppBar/AppBar";
 import PrivateRoute from "./components/_routs/PrivatRoute";
 import PublicRoute from "./components/_routs/PublicRoute";
-import {
-  getIsLoggedIn,
-  getRefreshToken,
-  getToken,
-} from "./redux/auth/authSelector";
+import { getIsLoggedIn } from "./redux/auth/authSelector";
 import MainPage from "./pages/MainPage/MainPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
-import { getNewTokens } from "./redux/auth/authOperations";
 
 function App() {
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const stateRefreshToken = useSelector(getRefreshToken);
-  const stateAccessToken = useSelector(getToken);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (stateAccessToken && !stateRefreshToken) dispatch(getNewTokens());
-  }, [dispatch, stateAccessToken, stateRefreshToken]);
-
   return (
     <div className="content">
       <div>
@@ -53,7 +39,6 @@ function App() {
               <Route element={<PrivateRoute />}>
                 <Route path="/" element={<MainPage />} />
               </Route>
-              {/* <Route path="*" element={<RedirectNew to="/" replace />} /> */}
             </Route>
           </Routes>
         </Suspense>

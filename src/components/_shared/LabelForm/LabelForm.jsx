@@ -14,7 +14,6 @@ const LabelForm = ({ type, handleChange, handleBlur, values }) => {
           onBlur={handleBlur}
           value={values.type}
         />
-        {/* {touched.password && errors.password && alert(errors.password)} */}
         <ErrorMessage component="div" name={type} className={s.errorMessage} />
       </label>
     </>
