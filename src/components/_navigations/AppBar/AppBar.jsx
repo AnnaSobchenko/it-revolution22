@@ -1,15 +1,12 @@
 
-import { React, useState } from "react";
+import { React } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Icons from "../../../images/symbol-defs.svg";
 import s from "./AppBar.module.scss";
 import MediaQuery from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
-// import Modal from "../Modal/Modal";
-// import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { getIsLoggedIn, getUserEmail, getUserName } from "../../../redux/auth/authSelector";
+import { getIsLoggedIn, getUserName } from "../../../redux/auth/authSelector";
 import { logout } from "../../../redux/auth/authOperations";
-import { getAllUsers } from "../../../redux/user/userOperations";
 
 const Logo=require("../../../images/logo.png")
 
@@ -18,34 +15,12 @@ const AppBar = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
 
-//   const [modal, setModal] = useState({
-//     open: false,
-//     content: null,
-//   });
-
-//   const openModal = (content) => {
-//     setModal({
-//       open: true,
-//       content,
-//     });
-//   };
-
-//   const closeModal = () => {
-//     setModal({
-//       open: false,
-//       content: null,
-//     });
-//   };
-
   return (
     <>
       <header className={s.header}>
         <div className={s.logo}>
           <NavLink to="/">
-            <img src={Logo} alt="logo" />
-            {/* <svg className={s.navIcon} width="129px" height="28px">
-              <use xlinkHref={`${Icons}#icon-logo`} />
-            </svg> */}
+            <img src={Logo} alt="logo" />           
           </NavLink>
         </div>
         <div className={s.header_navLink}>
@@ -78,7 +53,6 @@ const AppBar = () => {
          {isLoggedIn && <NavLink
             to="/contacts"
             className={({ isActive }) => (isActive ? s.activeStyle : s.link)}
-            // onClick={()=>dispatch(getAllUsers)}
           >
             Users
           </NavLink>}
