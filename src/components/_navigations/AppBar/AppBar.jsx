@@ -80,19 +80,6 @@ const AppBar = () => {
             </div>
           )}
 
-          {/* <MediaQuery maxWidth={767}>
-            <button onClick={openModal} className={s.navIcon_btn}>
-              <svg className={s.navIconMenu} width="20px" height="20px">
-                <use xlinkHref={`${Icons}#icon-menu`} />
-              </svg>
-            </button>
-            {modal.open && (
-              <Modal handleClose={closeModal} checker={true}>
-                <BurgerMenu closeModal={closeModal} />
-              </Modal>
-            )}
-          </MediaQuery> */}
-
           <MediaQuery minWidth={768}>
             {isLoggedIn && (
               <NavLink
