@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   addContactApi,
   delContactApi,
+  delUserByIdApi,
   getAllUsersApi,
   getContactApi,
   updateUserContactApi,

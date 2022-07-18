@@ -21,6 +21,7 @@ const ContactList = () => {
   // };
 
   const delContact = async (id) => {
+    console.log('id', id)
     await dispatch(delUserContact({ contactId: id, email: userEmail }));
     dispatch(getContact({ email: userEmail }));
   };

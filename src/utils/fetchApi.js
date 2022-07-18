@@ -1,6 +1,6 @@
 import axios from "axios";
-// axios.defaults.baseURL = "https://it-revolution22-rest-api.herokuapp.com/";
-axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = "https://it-revolution22-rest-api.herokuapp.com/";
+// axios.defaults.baseURL = "http://localhost:3001/";
 
 const token = {
   set(token) {
@@ -82,7 +82,8 @@ export async function delContactApi(form) {
 
   return data;
 }
-export async function delUserByIdApi({id}) {
-  await axios.delete("/api/users/userId",id);
+export async function delUserByIdApi(id) {
+  console.log('{id}', id)
+  await axios.delete(`/api/users/${id}`,id);
   return 
 }
