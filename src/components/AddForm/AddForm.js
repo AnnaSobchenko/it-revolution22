@@ -5,9 +5,15 @@ import {
   addUserContact,
   updateUserContact,
 } from "../../redux/user/userOperations";
-import { getUserPhoneForm } from "../../redux/user/userSelector";
+import {
+  getUserContacts,
+  getUserPhoneForm,
+} from "../../redux/user/userSelector";
 import { onPhoneFormReset } from "../../redux/user/userSlice";
 import s from "./AddForm.module.scss";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function AddForm() {
   const phoneForm = useSelector(getUserPhoneForm);
@@ -18,6 +24,7 @@ export default function AddForm() {
 
   const dispatch = useDispatch();
   const userEmail = useSelector(getUserEmail);
+  const userContact = useSelector(getUserContacts);
 
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
@@ -34,33 +41,46 @@ export default function AddForm() {
     }
   };
 
-  const addContact = async () => {
-    // phoneForm.id
-    //   ? dispatch(
-    //       updateUserContact({
-    //         name,
-    //         number,
-    //         email: userEmail,
-    //         id: phoneForm.id,
-    //       })
-    //     )
-    //   : dispatch(addUserContact({ name, number, email: userEmail }));
-    // await dispatch(onPhoneFormReset({}));
-  };
+  // const addContact = async () => {
+  //   // phoneForm.id
+  //   //   ? dispatch(
+  //   //       updateUserContact({
+  //   //         name,
+  //   //         number,
+  //   //         email: userEmail,
+  //   //         id: phoneForm.id,
+  //   //       })
+  //   //     )
+  //   //   : dispatch(addUserContact({ name, number, email: userEmail }));
+  //   // await dispatch(onPhoneFormReset({}));
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    phoneForm.id
-      ? await dispatch(
-          updateUserContact({
-            name,
-            number,
-            email: userEmail,
-            id: phoneForm.id,
-          })
-        )
-      : await dispatch(addUserContact({ name, number, email: userEmail }));
+    if (phoneForm.id) {
+      await dispatch(
+        updateUserContact({
+          name,
+          number,
+          email: userEmail,
+          id: phoneForm.id,
+        })
+      );
+    } else {
+      const isIncludes = userContact.some((el) => el.name === name);
+      if (isIncludes) {
+        setName("");
+        setNumber("");
+        return toast.error(
+          `Very sorry 😞 ${name}, already in the contact list`
+        );
+      }
+      dispatch(addUserContact({ name, number, email: userEmail }));
+
+      toast.success("New contact successfully added 🙂");
+    }
+
     await dispatch(onPhoneFormReset({ name: "", number: "", id: "" }));
     setName("");
     setNumber("");
@@ -76,8 +96,8 @@ export default function AddForm() {
             type="text"
             name="name"
             className={s.input}
-            value={name ? name : phoneForm.name}
-            // value={name }
+            // value={name ? name : phoneForm.name}
+            value={name}
             onChange={handleChange}
           />
         </label>
@@ -88,15 +108,28 @@ export default function AddForm() {
             type="text"
             name="number"
             className={s.input}
-            // value={number}
-            value={number ? number : phoneForm.number}
+            // value={number ? number : phoneForm.number}
+            value={number}
             onChange={handleChange}
           />
         </label>
       </div>
-      <button type="submit" className={s.btn} onClick={addContact}>
+      <button type="submit" className={s.btn}>
         Add contact
       </button>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      <ToastContainer />
     </form>
   );
 }
