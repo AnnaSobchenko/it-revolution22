@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import {
   addUserContact,
   delUserContact,
   getAllUsers,
   getContact,
 } from "./userOperations";
+
 
 const usersSlice = createSlice({
   name: "users",
@@ -16,6 +18,7 @@ const usersSlice = createSlice({
     error: null,
     isLoading: false,
   },
+
   reducers: {
     onContactUpdate(state, { payload }) {
       state.phoneForm = { ...payload };
@@ -27,6 +30,7 @@ const usersSlice = createSlice({
       state.filterValue = [...payload];
     },
   },
+
   extraReducers: {
     // getAllUsers
     [getAllUsers.pending](state) {
@@ -34,11 +38,28 @@ const usersSlice = createSlice({
       state.error = null;
     },
     [getAllUsers.fulfilled](state, { payload }) {
-      state.users = payload;
+
+      state.users = [...payload];
+
     },
     [getAllUsers.rejected](state, { payload }) {
       //   state.isLoading = false;
       //   state.isLoggedIn = false;
+
+      state.error = payload;
+    },
+    // delUserById
+    [delUserById.pending](state) {
+      //   state.isLoading = true;
+      state.error = null;
+    },
+    [delUserById.fulfilled](state, { payload }) {
+      // state.users = payload;
+    },
+    [delUserById.rejected](state, { payload }) {
+      //   state.isLoading = false;
+      //   state.isLoggedIn = false;
+
       state.error = payload;
     },
     [addUserContact.pending](state) {

@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import {
   addContactApi,
   delContactApi,
@@ -7,7 +8,8 @@ import {
   updateUserContactApi,
 } from "../../utils/fetchApi";
 
-export const getAllUsers = createAsyncThunk("users", async (_, thunkApi) => {
+
+export const getAllUsers = createAsyncThunk("users/get", async (_, thunkApi) => {
   try {
     const data = await getAllUsersApi();
 
@@ -16,6 +18,7 @@ export const getAllUsers = createAsyncThunk("users", async (_, thunkApi) => {
     return thunkApi.rejectWithValue(error.message);
   }
 });
+
 export const addUserContact = createAsyncThunk(
   "add/contact",
   async (form, thunkApi) => {
@@ -64,6 +67,16 @@ export const delUserContact = createAsyncThunk(
     }
   }
 );
+
+export const delUserById = createAsyncThunk("users/del", async (id, thunkApi) => {
+  try {
+    await delUserByIdApi(id);
+    return;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
+
 
 // export const signin = createAsyncThunk(
 //   "auth/signin",

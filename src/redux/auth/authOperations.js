@@ -5,6 +5,7 @@ import {
   signupUserApi,
   getUserInfo,
   refreshUserTokenApi,
+  // getOneUserInfoApi
 } from "../../utils/fetchApi";
 
 export const signup = createAsyncThunk(
@@ -59,6 +60,7 @@ export const getNewTokens = createAsyncThunk(
   async (_, thunkApi) => {
     const state = thunkApi.getState();
     const persistedToken = state.auth.token;
+    console.log('first', persistedToken)
     if (!persistedToken) thunkApi.rejectWithValue();
 
     try {
@@ -69,3 +71,15 @@ export const getNewTokens = createAsyncThunk(
     }
   }
 );
+
+// export const getOneUserInfo = createAsyncThunk(
+//   "auth/info",
+//   async (userInfo, thunkApi) => {
+//     try {
+//       const data = await getOneUserInfoApi({userInfo});
+//       return data;
+//     } catch (error) {
+//       return thunkApi.rejectWithValue("No user data :(");
+//     }
+//   }
+// );

@@ -44,6 +44,13 @@ export async function getUserInfo(accessToken) {
   const userInfo = await axios.get("api/users/current");
   return { email: userInfo.email };
 }
+// export async function getOneUserInfoApi(email) {
+//   console.log('email', email)
+//   const userInfo = await axios.get("api/users/info", {email});
+//   console.log('userInfo', userInfo)
+//   return userInfo;
+// }
+
 
 export async function refreshUserTokenApi({ persistedToken }) {
   token.set(persistedToken);
@@ -53,7 +60,6 @@ export async function refreshUserTokenApi({ persistedToken }) {
 }
 export async function getAllUsersApi() {
   const { data } = await axios.get("/api/users");
-
   return data;
 }
 export async function addContactApi(form) {
@@ -76,4 +82,8 @@ export async function delContactApi(form) {
   const { data } = await axios.post("/api/users/contacts/contactId", form);
 
   return data;
+}
+export async function delUserByIdApi({id}) {
+  await axios.delete("/api/users/userId",id);
+  return 
 }
