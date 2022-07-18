@@ -5,7 +5,10 @@ import {
   addUserContact,
   updateUserContact,
 } from "../../redux/user/userOperations";
-import { getUserPhoneForm } from "../../redux/user/userSelector";
+import {
+  getUserContacts,
+  getUserPhoneForm,
+} from "../../redux/user/userSelector";
 import { onPhoneFormReset } from "../../redux/user/userSlice";
 import s from "./AddForm.module.scss";
 
@@ -18,6 +21,7 @@ export default function AddForm() {
 
   const dispatch = useDispatch();
   const userEmail = useSelector(getUserEmail);
+  const userContact = useSelector(getUserContacts);
 
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
@@ -51,16 +55,44 @@ export default function AddForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    phoneForm.id
-      ? await dispatch(
-          updateUserContact({
-            name,
-            number,
-            email: userEmail,
-            id: phoneForm.id,
-          })
-        )
-      : await dispatch(addUserContact({ name, number, email: userEmail }));
+    // phoneForm.id
+    //   ? await dispatch(
+    //       updateUserContact({
+    //         name,
+    //         number,
+    //         email: userEmail,
+    //         id: phoneForm.id,
+    //       })
+    //     )
+    //   : await dispatch(addUserContact({ name, number, email: userEmail }));
+
+    if (phoneForm.id) {
+      await dispatch(
+        updateUserContact({
+          name,
+          number,
+          email: userEmail,
+          id: phoneForm.id,
+        })
+      );
+    } else {
+      const isIncludes = userContact.some((el) => el.name === name);
+      if (isIncludes) {
+        setName("");
+        setNumber("");
+
+        // return Report.failure(
+        //   "Very sorry 😞",
+        //   `${form.name}, already in the contact list`,
+        //   "Okay"
+        // );
+      }
+      dispatch(addUserContact({ name, number, email: userEmail }));
+
+      //  Notify.success("New contact successfully added 🙂");
+      // };
+    }
+
     await dispatch(onPhoneFormReset({ name: "", number: "", id: "" }));
     setName("");
     setNumber("");

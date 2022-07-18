@@ -62,7 +62,6 @@ export async function addContactApi(form) {
   return data.contacts;
 }
 export async function updateUserContactApi(form) {
-  console.log("form :>> ", form);
   const { data } = await axios.put(`/api/users/${form.id}`, form);
 
   return data.contacts;
