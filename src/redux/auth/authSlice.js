@@ -16,6 +16,7 @@ const authSlice = createSlice({
       _id: null,
       isLoading: false,
       isLoggedIn: false,
+      isAdmin:false,
       error: null,
     },
     reducers: {
@@ -27,7 +28,11 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isLoading = false;
         state.error = null;
+        state.isAdmin=false;
       },
+      addIsAdmin(state){
+        state.isAdmin=true
+      }
     },
     extraReducers: {
       // SIGN UP
@@ -41,7 +46,7 @@ const authSlice = createSlice({
         state.refreshToken = payload.refreshToken;
         state._id = payload._id;
         state.isLoggedIn = true;
-        state.isLoading = false;
+        state.isLoading = false;        
       },
       [signup.rejected](state, { payload }) {
         state.isLoading = false;
@@ -117,6 +122,7 @@ const authSlice = createSlice({
         state.refreshToken = null;
         state._id = null;
         state.isLoggedIn = false;
+        state.isAdmin = false;
         state.isLoading = false;
       },
       [logout.rejected](state, { payload }) {
@@ -126,5 +132,5 @@ const authSlice = createSlice({
       },
     },
   });
-  export const { logoutUser } = authSlice.actions;
+  export const { logoutUser,addIsAdmin } = authSlice.actions;
   export default authSlice.reducer;

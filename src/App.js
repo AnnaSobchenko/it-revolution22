@@ -45,12 +45,12 @@ function App() {
                 index
                 element={isLoggedIn ? <MainPage /> : <Navigate to="login" />}
               />
+              <Route path="contacts" element={<UsersPage />} />
               <Route element={<PublicRoute />}>
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />
               </Route>
               <Route element={<PrivateRoute />}>
-                <Route path="contacts" element={<UsersPage />} />
                 <Route path="/" element={<MainPage />} />
               </Route>
               {/* <Route path="*" element={<RedirectNew to="/" replace />} /> */}

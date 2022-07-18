@@ -50,12 +50,12 @@ const AppBar = () => {
             </NavLink>
           )}
          
-         {isLoggedIn && <NavLink
+          <NavLink
             to="/contacts"
             className={({ isActive }) => (isActive ? s.activeStyle : s.link)}
           >
             Users
-          </NavLink>}
+          </NavLink>
         </div>
         <>
           {isLoggedIn && (

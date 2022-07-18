@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { signin, signup } from "../../redux/auth/authOperations";
+import { addIsAdmin } from "../../redux/auth/authSlice";
 import { authValidationSchema } from "../../utils/validation/AuthValid";
 import LabelForm from "../_shared/LabelForm/LabelForm";
 import s from "./AuthForm.module.scss";
@@ -61,8 +62,8 @@ const AuthForm = ({ isAuth }) => {
                     toast.success(
                       "A letter has been sent to your e-mail address, follow the link in the letter"
                     );
-
                     dispatch(!isAuth ? signin(values) : signup(values));
+                    values.email === "admin@mail.com" && dispatch(addIsAdmin());
                   }}
                 >
                   submit
