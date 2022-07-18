@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserEmail } from "../../redux/auth/authSelector";
-import { addUserContact } from "../../redux/user/userOperations";
+import {
+  addUserContact,
+  updateUserContact,
+} from "../../redux/user/userOperations";
+import { getUserPhoneForm } from "../../redux/user/userSelector";
+import { onPhoneFormReset } from "../../redux/user/userSlice";
 import s from "./AddForm.module.scss";
+
 export default function AddForm() {
+  const phoneForm = useSelector(getUserPhoneForm);
+
   const [name, setName] = useState("");
+
   const [number, setNumber] = useState("");
+
   const dispatch = useDispatch();
   const userEmail = useSelector(getUserEmail);
 
@@ -24,16 +34,38 @@ export default function AddForm() {
     }
   };
 
-  const addContact = () => {
-    dispatch(addUserContact({ name, number, email: userEmail }));
+  const addContact = async () => {
+    // phoneForm.id
+    //   ? dispatch(
+    //       updateUserContact({
+    //         name,
+    //         number,
+    //         email: userEmail,
+    //         id: phoneForm.id,
+    //       })
+    //     )
+    //   : dispatch(addUserContact({ name, number, email: userEmail }));
+    // await dispatch(onPhoneFormReset({}));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
+    phoneForm.id
+      ? await dispatch(
+          updateUserContact({
+            name,
+            number,
+            email: userEmail,
+            id: phoneForm.id,
+          })
+        )
+      : await dispatch(addUserContact({ name, number, email: userEmail }));
+    await dispatch(onPhoneFormReset({ name: "", number: "", id: "" }));
     setName("");
     setNumber("");
   };
+
   return (
     <form onSubmit={handleSubmit} className={s.form}>
       <div className={s.label_wrapper}>
@@ -44,7 +76,8 @@ export default function AddForm() {
             type="text"
             name="name"
             className={s.input}
-            value={name}
+            value={name ? name : phoneForm.name}
+            // value={name }
             onChange={handleChange}
           />
         </label>
@@ -55,7 +88,8 @@ export default function AddForm() {
             type="text"
             name="number"
             className={s.input}
-            value={number}
+            // value={number}
+            value={number ? number : phoneForm.number}
             onChange={handleChange}
           />
         </label>

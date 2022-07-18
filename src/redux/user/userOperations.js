@@ -4,6 +4,7 @@ import {
   delContactApi,
   getAllUsersApi,
   getContactApi,
+  updateUserContactApi,
 } from "../../utils/fetchApi";
 
 export const getAllUsers = createAsyncThunk("users", async (_, thunkApi) => {
@@ -27,11 +28,23 @@ export const addUserContact = createAsyncThunk(
     }
   }
 );
-export const getUserContact = createAsyncThunk(
-  "get/contacts",
+export const updateUserContact = createAsyncThunk(
+  "add/contact",
   async (form, thunkApi) => {
     try {
-      const data = await getContactApi(form);
+      const data = await updateUserContactApi(form);
+
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+export const getContact = createAsyncThunk(
+  "get/contacts",
+  async (userEmail, thunkApi) => {
+    try {
+      const data = await getContactApi(userEmail);
 
       return data;
     } catch (error) {

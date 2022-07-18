@@ -1,32 +1,44 @@
-import { getUserContacts } from "../../redux/user/userSelector";
+import { getFilterValue, getUserContacts } from "../../redux/user/userSelector";
 import s from "./ContactList.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserEmail } from "../../redux/auth/authSelector";
-import {
-  delUserContact,
-  getUserContact,
-} from "../../redux/user/userOperations";
+import { delUserContact, getContact } from "../../redux/user/userOperations";
 import { useEffect } from "react";
+import { onContactUpdate } from "../../redux/user/userSlice";
 
 const ContactList = () => {
-  const userContacts = useSelector(getUserContacts);
+  const userFilterValue = useSelector(getFilterValue);
   const userEmail = useSelector(getUserEmail);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserContact({ email: userEmail }));
+    dispatch(getContact({ email: userEmail }));
   }, []);
 
-  const delContact = (id) => {
-    dispatch(delUserContact({ id, email: userEmail }));
+  // const updateContact = async ({ id, name, number }) => {
+  //   await dispatch(onContactUpdate({ id, name, number }));
+  // };
+
+  const delContact = async (id) => {
+    await dispatch(delUserContact({ contactId: id, email: userEmail }));
+    dispatch(getContact({ email: userEmail }));
   };
+
   return (
     <div>
       <ul className={s.items}>
-        {userContacts.map(({ id, name, number }) => (
+        {userFilterValue.map(({ id, name, number }) => (
           <li key={id} className={s.item}>
             <p>{name}</p>
             <p>{number}</p>
+            {/* <button
+              type="submit"
+              className={s.btn}
+              onClick={() => updateContact({ id, name, number })}
+            >
+              update
+            </button> */}
             <button
               type="submit"
               className={s.btn}
