@@ -58,7 +58,7 @@ const UsersPage = () => {
       </ul>
       {modal.open && (
         <Modal handleClose={closeModal} checker={true}>
-          <CardUser contact={modal.content} />
+          <CardUser contact={modal.content} closeModal={closeModal}/>
         </Modal>
       )}
     </section>
