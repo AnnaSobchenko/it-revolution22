@@ -1,5 +1,8 @@
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { signin, signup } from "../../redux/auth/authOperations";
 import { authValidationSchema } from "../../utils/validation/AuthValid";
 import LabelForm from "../_shared/LabelForm/LabelForm";
@@ -52,14 +55,18 @@ const AuthForm = ({ isAuth }) => {
 
               <div className={s.btn}>
                 {/* <button>sign in</button> */}
-                <button
-                type="button"
-                  onClick={() =>
-                    dispatch(!isAuth ? signin(values) : signup(values))
-                  }
+                <NavLink
+                  to="/"
+                  onClick={() => {
+                    toast.success(
+                      "A letter has been sent to your e-mail address, follow the link in the letter"
+                    );
+
+                    dispatch(!isAuth ? signin(values) : signup(values));
+                  }}
                 >
                   submit
-                </button>
+                </NavLink>
                 {/* <Button
                   cta="sign in"
                   signButton

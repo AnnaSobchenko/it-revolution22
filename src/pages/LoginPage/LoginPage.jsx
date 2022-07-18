@@ -1,9 +1,19 @@
 import AuthForm from "../../components/AuthForm/AuthForm";
+import { ToastContainer } from "react-toastify";
 import s from "./LoginPage.module.scss";
 
 const LoginPage = () => {
   return (
     <div className={`container ${s.authPage}`}>
+      <ToastContainer
+        position="top-center"
+        autoClose={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+      />
       <div className={s.authPageLeft}>
         <h1 className={s.authPageTitle}>IT Revolution</h1>
         <p className={s.authtext}>
