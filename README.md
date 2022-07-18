@@ -1,13 +1,10 @@
 # <dt>It-Revolution 22<dt>
 
-client
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Permanent+Marker&size=40&color=000000&height=70&lines=It-Revolution+22)](https://git.io/typing-svg)
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=UI7VxrZW1T0" target="_blank"><img src="http://img.youtube.com/vi/UI7VxrZW1T0/0.jpg" 
-alt="ALT-ТЕКСТ ИЗОБРАЖЕНИЯ" width="340" height="280" border="10" /></a>
+[![Demo CountPages alpha](https://j.gifs.com/gpGR4r.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
 
-[![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)]()
-
-https://it-revolution22-rest-api.herokuapp.com/api-docs/
+API documentation for test task IT-Revolution22: https://it-revolution22-rest-api.herokuapp.com/api-docs/
 
 1. Перейдіть за посиланням https://it-revolution22-bc13.netlify.app/
 
